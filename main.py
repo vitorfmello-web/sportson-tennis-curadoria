@@ -50,7 +50,7 @@ TAREFA FINAL:
 - Para cada notícia, fornecer:
   • Título curto
   • Fonte + link
-  • UMA frase MUITO CURTA (máx. 12–15 palavras)
+  • UMA frase MUITO CURTA (máx. 12–15 palavras), pode incluir emoji se válido para engajamento
 
 ESTILO DA FRASE:
 - Sintética
