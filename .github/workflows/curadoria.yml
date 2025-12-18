@@ -1,0 +1,33 @@
+name: Curadoria Tennis Daily
+
+on:
+  schedule:
+    - cron: "0 16 * * *"   # 13:00 no Brasil (UTC-3)
+  workflow_dispatch:
+
+jobs:
+  run-curadoria:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install openai sendgrid
+
+      - name: Run curadoria
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          MODEL: ${{ secrets.MODEL }}
+        run: |
+          python main.py
